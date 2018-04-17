@@ -230,6 +230,19 @@ public:
         return *this;
     }
 
+#if !defined(ZUUL_SYSTEM_64bit)
+
+    /**
+     * Assigns a int (changes type if needed)
+     */
+    inline Variant& operator=(long src)
+    {
+        assignInt((longint)src);
+        return *this;
+    }
+
+#endif    
+    
     /**
      * Assigns a double (changes type if needed)
      */
@@ -369,7 +382,7 @@ public:
     {
         return makeInt();
     }
-    inline operator const longint()
+    inline operator /*const*/ longint()
     {
         return toInt();
     }
@@ -381,10 +394,10 @@ public:
     {
         return makeDbl();
     }
-    inline operator const double() const
+    /*inline operator const double() const
     {
         return makeDbl();
-    }
+    }*/
 
     /**
      * Typecast the value as an bool
