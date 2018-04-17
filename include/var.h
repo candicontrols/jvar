@@ -552,7 +552,7 @@ public:
     {
         if (mData.type == V_DOUBLE)
         {
-            return isnan(mData.dblData);
+            return (mData.dblData != mData.dblData);
         }
         else if (mData.type == V_INT)
         {
