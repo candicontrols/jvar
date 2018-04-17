@@ -11,7 +11,9 @@
 #include "util.h"
 #include "arr.h"
 #include "str.h"
+
 #include <math.h>
+#include <stdint.h>
 
 #define VNULL Variant::sNull
 #define VEMPTY Variant::sEmpty
@@ -222,7 +224,7 @@ public:
     /**
      * Assigns a int (changes type if needed)
      */
-    inline Variant& operator=(int src)
+    inline Variant& operator=(int32_t src)
     {
         assignInt((longint)src);
         return *this;

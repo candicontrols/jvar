@@ -30,6 +30,7 @@
 #include <sys/stat.h>
 #include <memory.h>
 #include <errno.h>
+#include <stdint.h>
 
 #ifndef _MSC_VER
 #include <unistd.h>
@@ -191,8 +192,8 @@ typedef unsigned char uchar;
 typedef short int shortint;
 typedef unsigned short int ushortint;
 typedef unsigned int uint;
-typedef long int longint;
-typedef unsigned long int ulongint;
+typedef int64_t longint;
+typedef uint64_t ulongint;
 
 extern bool enable_dbgtrc;
 

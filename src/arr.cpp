@@ -71,7 +71,7 @@ void* BArray::insert(int pos, const void* elem)
 
     if (elem)
     {
-        memcpy(get(pos), elem, mElemSize);
+        memcpy_s(get(pos), mElemSize, elem, mElemSize);
     }
     (*mCountPtr)++;
 
@@ -91,7 +91,7 @@ void* BArray::addOrModify(const void* elem, bool modifyfound /*= true */)
         {
             if (elem)
             {
-                memcpy(get(pos), elem, mElemSize);
+                memcpy_s(get(pos), mElemSize, elem, mElemSize);
             }
             return get(pos);
         }

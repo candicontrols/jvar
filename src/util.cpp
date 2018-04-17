@@ -1,6 +1,7 @@
 // Copyright (c) 2014 Yasser Asmi
 // Released under the MIT License (http://opensource.org/licenses/MIT)
 
+#include "candi_s.h"
 #include "util.h"
 
 #ifdef __APPLE__
@@ -112,7 +113,7 @@ void Buffer::alloc(size_t size)
     mMemory = ::malloc(size);
     if (mMemory == NULL)
     {
-        dbgerr("failed to allocate %lu bytes\n", size);
+        dbgerr("failed to allocate %lu bytes\n", (unsigned long)size);
         return;
     }
     mSize = size;
@@ -128,7 +129,7 @@ void Buffer::reAlloc(size_t size)
     void* p = ::realloc(mMemory, size);
     if (p == NULL)
     {
-        dbgerr("failed to allocate %lu bytes\n", size);
+        dbgerr("failed to allocate %lu bytes\n", (unsigned long)size);
         return;
     }
 
@@ -168,13 +169,13 @@ void Buffer::free()
 void Buffer::copyFrom(Buffer& src)
 {
     reAlloc(src.size());
-    memcpy(ptr(), src.ptr(), src.size());
+    memcpy_s(ptr(), src.size(), src.ptr(), src.size());
 }
 
 void Buffer::copyFrom(const Buffer& src)
 {
     reAlloc(src.size());
-    memcpy(ptr(), src.cptr(), src.size());
+    memcpy_s(ptr(), src.size(), src.cptr(), src.size());
 }
 
 void Buffer::moveFrom(Buffer& src)

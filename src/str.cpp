@@ -146,7 +146,7 @@ string int2str(longint n)
 {
     //TODO: call format() that returns a string
     string s;
-    format(s, "%ld", n);
+    format(s, "%lld", n);
     return s;
 }
 
@@ -163,7 +163,7 @@ longint str2baseint(const string& str, int base, bool* valid /* = NULL */)
     bool res = true;
 
     errno = 0;
-    longint value = strtol(str.c_str(), &end, base);
+    longint value = strtoll(str.c_str(), &end, base);
     if ((errno != 0 && value == 0) || (*end != '\0'))
     {
         value = 0;
@@ -198,6 +198,7 @@ double str2dbl(const string& str, bool* valid  /* = NULL */)
 
 uint strHashSedgewick(const char* str, size_t len)
 {
+   (void)len;
     // Robert Sedgewick hash function
     uint b = 378551;
     uint a = 63689;
@@ -739,7 +740,7 @@ void Replacer::copy(const char* from, int len, int orglen)
     {
         ensureAlloc(mBufPos + len + 1);
 
-        memcpy((char*)mBuf.ptr() + mBufPos, from, len);
+        memcpy_s((char*)mBuf.ptr() + mBufPos, len, from, len);
         mBufPos += len;
     }
 

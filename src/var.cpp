@@ -96,7 +96,7 @@ longint Variant::makeInt() const
             std::string* strdata = mData.strData();
             char* end;
             errno = 0;
-            long int value = strtol(strdata->c_str(), &end, 10);
+            long int value = strtoll(strdata->c_str(), &end, 10);
             if ((errno != 0 && value == 0) || (*end != '\0'))
             {
                 value = 0;
@@ -184,7 +184,7 @@ void Variant::makeString(StrBld& s, int level, bool json)
         case V_INT:
         {
             s.clear();
-            s.appendFmt("%ld", mData.intData);
+            s.appendFmt("%lld", mData.intData);
         }
         break;
 
@@ -196,7 +196,11 @@ void Variant::makeString(StrBld& s, int level, bool json)
             //     tmp += ".0";
             // }
             s.clear();
-            s.appendFmt("%lg", mData.dblData);
+            if (isnan(mData.dblData)) {
+                s.append("null");
+            } else {
+                s.appendFmt("%0.2f", mData.dblData);
+            }
         }
         break;
 
@@ -1540,25 +1544,34 @@ void Variant::load(Variant param)
 
 void VarExtInterface::onAppend(Variant& arr, Variant& newelem)
 {
+  (void)arr;
+  (void)newelem;
 }
 
 bool VarExtInterface::onNewExt(Variant& destobj, Variant& param)
 {
+  (void)destobj;
+  (void)param;
     return false;
 }
 
 bool VarExtInterface::onSaveExt(Variant& sobj)
 {
+    (void)sobj;
     return false;
 }
 
 bool VarExtInterface::onLoadExt(Variant& destobj, Variant& param)
 {
+    (void)destobj;
+    (void)param;
     return false;
 }
 
 Variant* VarExtInterface::onAddMissingKey(Variant& destobj, const char* key)
 {
+    (void)destobj;
+    (void)key;
     return NULL;
 }
 

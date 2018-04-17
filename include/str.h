@@ -8,6 +8,8 @@
 #ifndef _STR_H
 #define _STR_H
 
+#include "candi_s.h"
+
 #include "util.h"
 
 /**
@@ -168,7 +170,7 @@ std::string int2str(longint n);
  */
 inline void int2str(std::string& s, longint n)
 {
-    format(s, "%ld", n);
+    format(s, "%lld", n);
 }
 
 /**
@@ -373,7 +375,7 @@ public:
             }
         }
 
-        memcpy(dest, val, len + 1);
+        memcpy_s(dest, len + 1, val, len + 1);
     }
 
     /**
@@ -449,7 +451,7 @@ private:
         void* p = ::realloc(mDyn.ptr, size);
         if (p == NULL)
         {
-            dbgerr("FixedStr failed to allocate %d bytes\n", size);
+//            dbgerr("FixedStr failed to allocate %d bytes\n", size);
             return;
         }
         mDyn.ptr = (char*)p;
@@ -497,7 +499,7 @@ public:
     inline void append(const char* s, int l)
     {
         char* buf = ensureAlloc(mLen + l + 1);
-        memcpy(buf + mLen, s, l);
+        memcpy_s(buf + mLen, l, s, l);
         mLen += l;
     }
     inline void append(const char* s)

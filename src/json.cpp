@@ -89,7 +89,6 @@ void JsonParser::parseMembers(Variant& var)
         // follows the JavaScript behavior and the value is set to the very last value set.
 
         Variant& newprop = var.addOrModifyProperty(key.c_str());
-
         parseValue(newprop);
 
         if (tokenEquals(','))
@@ -246,7 +245,7 @@ void JsonParser::parseNum(Variant& var)
         else
         {
             char* ench;
-            longint li = strtol(numstr, &ench, 10);
+            longint li = strtoll(numstr, &ench, 10);
             if (*ench == '\0')
             {
                 valid = true;
