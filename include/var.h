@@ -660,6 +660,10 @@ public:
     }
 
     /**
+     * Remove an item at the position
+     * @return sucess of failure
+     */
+    bool remove(int pos);
      * Removes the last item from the array and returns it
      *
      * @return Copy of the last element

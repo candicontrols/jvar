@@ -435,6 +435,26 @@ Variant* Variant::append(const Variant& elem)
     return newelem;
 }
 
+bool Variant::remove(int pos)
+{
+    Variant ret;
+
+    if (isArray())
+    {
+        if (mData.arrayData->length() > pos && pos > 0)
+        {
+            ret = mData.arrayData->remove(pos);
+        }
+    }
+    else
+    {
+        dbgerr("Cannot remove() a non-array\n");
+    }
+
+    return false;
+}
+
+
 Variant Variant::pop()
 {
     Variant ret;
