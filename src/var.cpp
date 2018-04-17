@@ -237,7 +237,7 @@ void Variant::makeString(StrBld& s, int level, bool json)
                     s.append(',');
                 }
                 if (level >= 0) {
-                appendNewline(s, level, json);
+                    appendNewline(s, level, json);
                 }
                 appendQuote(s, i->type());
 
@@ -250,7 +250,7 @@ void Variant::makeString(StrBld& s, int level, bool json)
             }
             level--;
             if (level >= 0) {
-            appendNewline(s, level, json);
+                appendNewline(s, level, json);
             }
             s.append(']');
         }
@@ -269,7 +269,7 @@ void Variant::makeString(StrBld& s, int level, bool json)
                     s.append(",");
                 }
                 if (level >= 0) {
-                appendNewline(s, level, json);
+                    appendNewline(s, level, json);
                 }
                 appendQuote(s, V_STRING);
 
@@ -298,7 +298,7 @@ void Variant::makeString(StrBld& s, int level, bool json)
             }
             level--;
             if (level >= 0) {
-            appendNewline(s, level, json);
+                appendNewline(s, level, json);
             }
             s.append('}');
         }
@@ -1085,11 +1085,11 @@ bool Variant::deleteData()
         case V_STRING:
         {
             std::string* strdata = mData.strData();
+            strdata->clear();
 
+            // CANDI - 9841 - crash on Ubuntu 16 - NEEDS FIXING
             // Call the string destructor on the inplace newed object.
-            using namespace std;
-	    strdata->std::string::~string();
-            //strdata->std::string::~basic_string();
+            strdata->~basic_string();
         }
         break;
 
