@@ -8,7 +8,7 @@ link_directories("${CMAKE_SOURCE_DIR}/lib/")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/")
 set(LIBRARY_OUTPUT_PATH  "${CMAKE_SOURCE_DIR}/lib/")
 
-option(CXX11 "Enable C++11 support" OFF)
+option(CXX11 "Enable C++11 support" ON)
 message(STATUS "CXX11 = " ${CXX11})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -Wno-unused-parameter -Wno-variadic-macros -Wno-ignored-qualifiers")
@@ -28,7 +28,7 @@ if(AUTOADDPROP)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAUTOADDPROP")
 endif(AUTOADDPROP)
 
-add_library(jvar STATIC src/str.cpp src/util.cpp src/arr.cpp src/var.cpp src/json.cpp)
+add_library(jvar STATIC src/str.cpp src/util.cpp src/arr.cpp src/var.cpp src/json.cpp include/str.h include/util.h include/arr.h include/var.h include/json.h)
 
 add_executable(ex_basics example/basics.cpp)
 target_link_libraries(ex_basics jvar )

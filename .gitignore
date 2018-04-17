@@ -8,3 +8,5 @@ cmake_install.cmake
 .browse.VC.db-wal
 bin
 lib
+.idea/
+cmake-build-debug/
