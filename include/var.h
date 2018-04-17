@@ -664,6 +664,8 @@ public:
      * @return sucess of failure
      */
     bool remove(int pos);
+
+    /**
      * Removes the last item from the array and returns it
      *
      * @return Copy of the last element
@@ -744,7 +746,8 @@ public:
      * @return     True if found, false otherwise
      */
     bool hasProperty(const char* key);
-
+    bool hasProperty(const std::string& key);
+    
     /**
      * Remove a property
      *
@@ -781,7 +784,7 @@ public:
     bool addEnv(const char* varname, const Variant& value = VEMPTY);
 
 #if __cplusplus > 199711L
-    /**
+	 /**
      * Executes the function object with any number of parameters.
      *
      * This method is called with a brace-enclosed parameter list - see
@@ -790,7 +793,7 @@ public:
      * The overloads of operator() taking zero to four parameters call this
      * method to do real work and return the result. They can therefore
      * be used as shorthand if only four arguments are needed.
-     */
+     */    
     Variant operator() (std::initializer_list<const jvar::Variant>&& values);
 #endif
 

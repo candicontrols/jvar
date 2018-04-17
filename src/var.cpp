@@ -666,6 +666,20 @@ bool Variant::hasProperty(const char* key)
     return false;
 }
 
+bool Variant::hasProperty(const std::string& key)
+{
+    assert(key.length() > 0);
+
+    if (mData.type == V_OBJECT)
+    {
+        if (mData.objectData->get(key.c_str()) != NULL)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 Variant* Variant::handleMissingKey(const char* key)
 {
     Variant* v = NULL;
