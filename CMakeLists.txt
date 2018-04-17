@@ -28,7 +28,7 @@ if(AUTOADDPROP)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAUTOADDPROP")
 endif(AUTOADDPROP)
 
-add_library(jvar STATIC src/str.cpp src/util.cpp src/arr.cpp src/var.cpp src/json.cpp include/str.h include/util.h include/arr.h include/var.h include/json.h)
+add_library(jvar STATIC src/str.cpp src/util.cpp src/arr.cpp src/var.cpp src/json.cpp  src/candi_s.c include/str.h include/util.h include/arr.h include/var.h include/json.h)
 
 add_executable(ex_basics example/basics.cpp)
 target_link_libraries(ex_basics jvar )
