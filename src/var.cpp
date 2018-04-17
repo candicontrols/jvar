@@ -236,9 +236,9 @@ void Variant::makeString(StrBld& s, int level, bool json)
                 {
                     s.append(',');
                 }
-
+                if (level >= 0) {
                 appendNewline(s, level, json);
-
+                }
                 appendQuote(s, i->type());
 
                 StrBld tmps;
@@ -249,7 +249,9 @@ void Variant::makeString(StrBld& s, int level, bool json)
 
             }
             level--;
+            if (level >= 0) {
             appendNewline(s, level, json);
+            }
             s.append(']');
         }
         break;
@@ -266,9 +268,9 @@ void Variant::makeString(StrBld& s, int level, bool json)
                 {
                     s.append(",");
                 }
-
+                if (level >= 0) {
                 appendNewline(s, level, json);
-
+                }
                 appendQuote(s, V_STRING);
 
                 if (json)
@@ -295,7 +297,9 @@ void Variant::makeString(StrBld& s, int level, bool json)
 
             }
             level--;
+            if (level >= 0) {
             appendNewline(s, level, json);
+            }
             s.append('}');
         }
         break;
@@ -1395,10 +1399,10 @@ std::string Variant::toStrE() const
 }
 
 
-std::string Variant::toJsonString() const
+std::string Variant::toJsonString(int level) const
 {
     StrBld sb;
-    ((Variant*)this)->makeString(sb, 0, true);
+    ((Variant*)this)->makeString(sb, level, true);
     return sb.toString();
 }
 

@@ -470,7 +470,7 @@ public:
      *
      * @return String with Json
      */
-    std::string toJsonString() const;
+    std::string toJsonString(int level = 0) const;
     void makeJson(StrBld& sb) const;
 
     /**
