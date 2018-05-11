@@ -534,8 +534,10 @@ void Parser::internalParse()
                                 }
                                 else
                                 {
-                                    setError("Illegal escape char");
-                                    done = true;
+                                    // decode anything else {[]}
+                                    append(c);
+                                    //setError("Illegal escape char");
+                                    //done = true;
                                 }
                             }
 
